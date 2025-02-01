@@ -1,3 +1,132 @@
-@use "./base.scss";
+/* Custom styling for our digital garden */
 
-// put your custom CSS here!
+// Enhance readability
+article {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  
+  // Add subtle styling to blockquotes
+  blockquote {
+    border-left: 3px solid var(--tertiary);
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: var(--highlight);
+    border-radius: 0 4px 4px 0;
+  }
+  
+  // Style headers
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    font-weight: 600;
+  }
+  
+  // Add subtle separator to headers
+  h2 {
+    border-bottom: 1px solid var(--lightgray);
+    padding-bottom: 0.5rem;
+  }
+}
+
+// Enhance links
+a {
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  &.internal {
+    background: var(--highlight);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    
+    &:hover {
+      background: var(--tertiary);
+      color: var(--light);
+    }
+  }
+}
+
+// Style code blocks
+pre {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+// Enhance tables
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+  
+  th, td {
+    padding: 0.5rem;
+    border: 1px solid var(--lightgray);
+  }
+  
+  th {
+    background: var(--light);
+    font-weight: 600;
+  }
+  
+  tr:nth-child(even) {
+    background: var(--highlight);
+  }
+}
+
+// Style callouts
+.callout {
+  border-radius: 8px;
+  margin: 1rem 0;
+  
+  &[data-callout="note"] {
+    --color: var(--secondary);
+  }
+  
+  &[data-callout="info"] {
+    --color: #4ba0e8;
+  }
+  
+  &[data-callout="success"] {
+    --color: #4caf50;
+  }
+  
+  &[data-callout="warning"] {
+    --color: #ff9800;
+  }
+}
+
+// Enhance graph view
+.graph {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+// Style search
+.search-container {
+  input {
+    border-radius: 6px;
+    border: 1px solid var(--lightgray);
+    padding: 0.5rem 1rem;
+    
+    &:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px var(--highlight);
+    }
+  }
+}
+
+// Mobile optimizations
+@media (max-width: 800px) {
+  article {
+    font-size: 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.75rem;
+  }
+}
