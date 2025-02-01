@@ -1,11 +1,11 @@
-/* Custom styling for our digital garden */
+@use "sass:color";
+@use "variables.scss" as *;
 
-// Enhance readability
+// Base article styling
 article {
   font-size: 1.1rem;
   line-height: 1.7;
   
-  // Add subtle styling to blockquotes
   blockquote {
     border-left: 3px solid var(--tertiary);
     margin: 1rem 0;
@@ -13,71 +13,60 @@ article {
     background: var(--highlight);
     border-radius: 0 4px 4px 0;
   }
-  
-  // Style headers
-  h1, h2, h3, h4, h5, h6 {
+}
+
+// Header styling
+h1, h2, h3, h4, h5, h6 {
+  &[id] {
     margin-top: 2rem;
     margin-bottom: 1rem;
     color: var(--dark);
-    font-weight: 600;
-  }
-  
-  // Add subtle separator to headers
-  h2 {
-    border-bottom: 1px solid var(--lightgray);
-    padding-bottom: 0.5rem;
+    font-weight: $boldWeight;
   }
 }
 
-// Enhance links
-a {
+h2[id] {
+  border-bottom: 1px solid var(--lightgray);
+  padding-bottom: 0.5rem;
+}
+
+// Enhanced link styling
+a.internal {
   text-decoration: none;
+  background: var(--highlight);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
   transition: all 0.2s ease;
   
   &:hover {
-    text-decoration: underline;
+    background: var(--tertiary);
+    color: var(--light) !important;
   }
-  
-  &.internal {
-    background: var(--highlight);
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
+}
+
+// Code block enhancements
+pre {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Table styling
+.table-container {
+  & > table {
+    margin: 1rem 0;
     
-    &:hover {
-      background: var(--tertiary);
-      color: var(--light);
+    th {
+      background: var(--light);
+      font-weight: $semiBoldWeight;
+    }
+    
+    tr:nth-child(even) {
+      background: var(--highlight);
     }
   }
 }
 
-// Style code blocks
-pre {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-// Enhance tables
-table {
-  border-collapse: collapse;
-  margin: 1rem 0;
-  width: 100%;
-  
-  th, td {
-    padding: 0.5rem;
-    border: 1px solid var(--lightgray);
-  }
-  
-  th {
-    background: var(--light);
-    font-weight: 600;
-  }
-  
-  tr:nth-child(even) {
-    background: var(--highlight);
-  }
-}
-
-// Style callouts
+// Callout customization
 .callout {
   border-radius: 8px;
   margin: 1rem 0;
@@ -87,41 +76,47 @@ table {
   }
   
   &[data-callout="info"] {
-    --color: #4ba0e8;
+    --color: rgb(75, 160, 232);
   }
   
   &[data-callout="success"] {
-    --color: #4caf50;
+    --color: rgb(76, 175, 80);
   }
   
   &[data-callout="warning"] {
-    --color: #ff9800;
+    --color: rgb(255, 152, 0);
   }
 }
 
-// Enhance graph view
+// Graph visualization
 .graph {
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  #graph-container {
+    background: var(--light);
+  }
 }
 
-// Style search
+// Search enhancements
 .search-container {
   input {
     border-radius: 6px;
     border: 1px solid var(--lightgray);
     padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
     
     &:focus {
       border-color: var(--secondary);
       box-shadow: 0 0 0 2px var(--highlight);
+      outline: none;
     }
   }
 }
 
 // Mobile optimizations
-@media (max-width: 800px) {
+@media all and ($mobile) {
   article {
     font-size: 1rem;
   }
